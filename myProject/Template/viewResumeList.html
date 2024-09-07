@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume List</title>
+    <style>
+        #resume-table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #resume-table td, #resume-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #resume-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #resume-table tr:hover {
+            background-color: #ddd;
+        }
+
+        #resume-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume List</h1>
+        <table id="resume-table">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>File</th>
+                <th>Actions</th>
+            </tr>
+            {% for resume in resumes %}
+            <tr>
+                <td>{{ resume.title }}</td>
+                <td>{{ resume.description }}</td>
+                <td><a href="{{ resume.file.url }}" target="_blank">View File</a></td>
+                <td>
+                    <!-- Example actions, adjust URLs as needed -->
+                    <a href="{% url 'resume_detail' resume.id %}">View</a> |
+                    <a href="{% url 'resume_edit' resume.id %}">Edit</a> |
+                    <a href="{% url 'resume_delete' resume.id %}">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No resumes available.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
+{% endblock body %}

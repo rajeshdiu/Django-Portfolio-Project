@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+  }
+
+  .profile-card {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    padding: 20px;
+    transition: 0.3s;
+  }
+
+  .profile-card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+
+  .profile-img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .profile-info {
+    margin-bottom: 15px;
+  }
+
+  .profile-info h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .profile-info p {
+    margin: 5px 0;
+    color: #666;
+  }
+
+  .button-container {
+    margin-top: 20px;
+  }
+
+  .button-container a {
+    text-decoration: none;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .button-container a:hover {
+    background-color: #0056b3;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="profile-container">
+  <div class="profile-card">
+    <img src="" alt="Profile Picture" class="profile-img">
+    <div class="profile-info">
+      <h2>Username:{{ request.user.username }}</h2>
+      <h3>Email:{{ request.user.email }}</h3>
+      <p>{{ request.user.user_type }}</p>
+    </div>
+    <div class="button-container">
+      <a href="">Edit Profile</a>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

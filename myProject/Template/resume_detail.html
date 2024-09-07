@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Detail</title>
+    <style>
+        .resume-container {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .resume-container h1 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .resume-container img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .resume-container .section {
+            margin-bottom: 20px;
+        }
+
+        .resume-container .section h2 {
+            border-bottom: 2px solid #04AA6D;
+            padding-bottom: 5px;
+            color: #333;
+        }
+
+        .resume-container p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .resume-container a {
+            color: #04AA6D;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .resume-container a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <h1>{{ resume.title }}</h1>
+        
+        {% if resume.profile_pic %}
+            <img src="{{ resume.profile_pic.url }}" alt="Profile Picture">
+        {% endif %}
+        
+        {% if resume.file %}
+            <a href="{{ resume.file.url }}" target="_blank">
+                <button>View Resume</button>
+            </a>
+        {% endif %}
+        
+        {% if resume.name %}
+            <div class="section">
+                <h2>Personal Information</h2>
+                <p><strong>Name:</strong> {{ resume.name }}</p>
+                {% if resume.email %}
+                    <p><strong>Email:</strong> {{ resume.email }}</p>
+                {% endif %}
+                {% if resume.phone_number %}
+                    <p><strong>Phone Number:</strong> {{ resume.phone_number }}</p>
+                {% endif %}
+                {% if resume.address %}
+                    <p><strong>Address:</strong> {{ resume.address }}</p>
+                {% endif %}
+                {% if resume.linkedin_url %}
+                    <p><strong>LinkedIn:</strong> <a href="{{ resume.linkedin_url }}" target="_blank">{{ resume.linkedin_url }}</a></p>
+                {% endif %}
+                {% if resume.github_url %}
+                    <p><strong>GitHub:</strong> <a href="{{ resume.github_url }}" target="_blank">{{ resume.github_url }}</a></p>
+                {% endif %}
+                {% if resume.portfolio_url %}
+                    <p><strong>Portfolio:</strong> <a href="{{ resume.portfolio_url }}" target="_blank">{{ resume.portfolio_url }}</a></p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if resume.education %}
+            <div class="section">
+                <h2>Education</h2>
+                <p>{{ resume.education }}</p>
+            </div>
+        {% endif %}
+
+        {% if resume.experience %}
+            <div class="section">
+                <h2>Experience</h2>
+                <p>{{ resume.experience }}</p>
+            </div>
+        {% endif %}
+
+        {% if resume.skills %}
+            <div class="section">
+                <h2>Skills</h2>
+                <p>{{ resume.skills }}</p>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'viewResumeList' %}" class="back-link">Back to Resume List</a>
+    </div>
+</body>
+</html>
+{% endblock body %}
